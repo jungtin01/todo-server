@@ -1,0 +1,139 @@
+<!-- Todo Modal -->
+<div th:fragment="modal" xmlns:th="http://www.thymeleaf.org"
+
+	class="modal fade" id="todo-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content text-dark">
+			<div class="modal-header">
+				<h5 class="modal-title text-dark" id="exampleModalLabel">Create Todo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group form-inline">
+					<label class="d-block w-100">Label</label>
+					<input type="text" class="form-control form-control-modal input-label"
+					       id="create-lbl-modal-input"
+					       placeholder="...add new label">
+					<button type="submit"
+					        class="btn btn-sm btn-outline-dark ml-0 ml-sm-3 mt-2 mt-sm-0"
+					        id="create-lbl-modal-btn">
+						Create Label
+					</button>
+				</div>
+				<div class="form-group mt-3">
+					<label>Todo</label>
+					<input type="text"
+					       id="create-todo-modal-input"
+					       class="form-control form-control-modal"
+					       placeholder="...tell me what you gonna do next !">
+					<button type="submit"
+					        id="create-todo-modal-btn"
+					        class="btn btn-sm btn-outline-success mt-3">Submit
+					</button>
+				</div>
+				<div class="label-radio-container" id="label-radio-modal-container">
+					<div class="custom-control custom-radio mt-1" th:each="label : ${labels}">
+						<input type="radio"
+						       th:id="|label_${label.id}_modal|"
+						       th:value="${label.id}"
+						       class="custom-control-input label-item"
+						       name="label">
+						<label class="custom-control-label" th:for="|label_${label.id}_modal|"
+						       th:text="${label.title}">title</label>
+						<a class="delete-label" th:data-id="${label.id}">&times;</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- Heading Section -->
+<th:block th:fragment="heading_section" xmlns:th="http://www.thymeleaf.org">
+	<div class="col-md-12 heading-section">
+		<h2 class="mb-3">Todo List</h2>
+		<div class="form-group form-inline">
+			<select class="form-control-sm rounded-pill custom-select custom-select-sm w-50 ml-3"
+			        id="label-select-container">
+				<option selected class="label-select" value="null">Recent todos</option>
+				<option class="label-select"
+				        th:each="label : ${labels}"
+				        th:value="${label.id}"
+				        th:text="${label.title}"/>
+			</select>
+			<button class="btn btn-sm btn-success text-white
+											rounded-left ml-3 d-block d-md-none trigger-todo-modal">
+				Add Todo
+			</button>
+		</div>
+	</div>
+
+	<table class="table table-borderless text-white">
+		<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Title</th>
+			<th scope="col">Num of tasks</th>
+		</tr>
+		</thead>
+		<tbody id="todo-table-heading" class="todos-container">
+		<tr th:each="todo : ${todos}">
+			<th scope="row" th:text="${todo.id}"></th>
+			<td>Todo : <a href="javascript:void(0)" th:data-id="${todo.id}"
+			              class="todo-title link-hover trigger-task-modal">
+				<th:block th:text="${todo.title}"/>
+			</a></td>
+			<td th:classappend="|todo-size_${todo.id}|" th:text="${todo.tasks.size()}"/>
+		</tr>
+		</tbody>
+	</table>
+</th:block>
+
+
+
+
+
+
+<!-- Todo Item -->
+<th:block th:fragment="todo_item" xmlns:th="http://www.thymeleaf.org">
+	<div class="col-12 col-md-6 col-lg-4" th:each="todo : ${todos}">
+		<div class="media block-6 services d-block ftco-animate">
+			<div class="icon">
+				<span class="flaticon-video-camera"></span>
+			</div>
+			<div class="media-body todos-container">
+				<h3 class="heading mb-3">
+					Todo : <a href="javascript:void(0)"
+					          th:data-id="${todo.id}"
+					          class="link-hover trigger-task-modal"
+					          th:text="${todo.title}"></a>
+				</h3>
+				<table class="table table-borderless text-white mt-3">
+					<tbody class="todo-item-table" th:id="|todo-item-table_${todo.id}|">
+					<tr th:each="task : ${todo.tasks}">
+						<td><input type="checkbox"
+						           class="task-checkbox-isdone"
+						           th:data-id="${task.id}"
+						           th:checked="${task.isDone}"></td>
+						<td class="task-content"
+						    th:data-id="${task.id}"
+						    th:classappend="${task.isDone} ? 'task-done' : ''"
+						    th:text="${task.content}"/>
+						<td>
+							<button class="btn btn-sm btn-outline-danger
+									rounded-0 task-delete-btn"
+							        th:data-id="${task.id}">Remove</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div> <!--Todo item-->
+</th:block>

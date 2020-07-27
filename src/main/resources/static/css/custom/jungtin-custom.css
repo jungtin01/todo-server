@@ -1,0 +1,112 @@
+.label-radio-container {
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.label-radio-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+.label-radio-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.label-radio-container::-webkit-scrollbar-thumb {
+    background-color: #59504F;
+}
+
+#heading-todo {
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+#heading-todo::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+#heading-todo::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#heading-todo::-webkit-scrollbar-thumb {
+    background-color: #59504F;
+}
+
+.todo-title {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.link-hover {
+    transition: .3s ease-out;
+}
+
+.link-hover:hover {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.form-control-modal {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.task-done {
+    text-decoration: line-through;
+}
+
+.trigger-task-modal {
+    color: grey;
+    cursor: pointer;
+    transition: .3s ease-out;
+}
+
+.trigger-task-modal:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* TOAST */
+#toast-container {
+    position: fixed;
+    top: 13px;
+    right: 20px;
+    z-index: 100;
+    min-width: 309px;
+}
+
+/* DEL LABEL */
+.custom-radio {
+    padding-right: 10px;
+}
+
+.delete-label {
+    color: #FFFFFF!important;
+    font-size: 21px;
+    cursor: pointer;
+
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.delete-label:hover {
+    text-decoration: underline;
+}
+
+#label-radio-modal-container .delete-label {
+    color: #343a40 !important;
+}
+
+/* OVERRIDE INVALID FORM ALERT */
+.is-invalid {
+    border-color: #dc3545 !important;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center right calc(0.375em + 0.1875rem) !important;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+}
