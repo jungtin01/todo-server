@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Todo extends RepresentationModel<Todo> {
     private Long id;
     
     @Column(nullable = false)
+    @NotNull
     private String title;
     
     @OneToMany(mappedBy = "todo",

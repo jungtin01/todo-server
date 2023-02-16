@@ -34,7 +34,7 @@ public class RESTLabelController {
     private final iLabelService labelService;
     
     @ResponseStatus(code = HttpStatus.OK)
-    @GetMapping(produces = {"application/hal+json", "application/json"})
+    @GetMapping()
     public CollectionModel<Label> getAllLabels() {
         List<Label> labels = labelService.findAll();
         labels.stream().forEach(label -> label.setTodos(null));
